@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="Joomla\Component\RadicalMart\Administrator\Field">
+	<fieldset name="after_payment_links" label="PLG_RADICALMART_APL_FIELDSET">
+		<field name="apl_statuses" type="statuses"
+			   label="PLG_RADICALMART_APL_PARAMS_STATUSES"
+			   hint=" "
+			   multiple="true"
+			   layout="joomla.form.field.list-fancy-select"
+			   parentclass="stack"
+			   required="true"/>
+	</fieldset>
+</form>

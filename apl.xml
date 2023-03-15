@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.9" type="plugin" group="radicalmart" method="upgrade">
+	<name>PLG_RADICALMART_APL</name>
+	<author>Delo Design</author>
+	<creationDate>March 2023</creationDate>
+	<copyright>Copyright © 2023 Delo Design. All rights reserved.</copyright>
+	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>boss@delo-design.ru</authorEmail>
+	<authorUrl>https://delo-design.ru</authorUrl>
+	<version>0.0.1-dev</version>
+	<description>PLG_RADICALMART_APL_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\RadicalMart\APL</namespace>
+	<scriptfile>script.php</scriptfile>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_radicalmart_apl.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_radicalmart_apl.sys.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.plg_radicalmart_apl.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.plg_radicalmart_apl.sys.ini</language>
+	</languages>
+	<files>
+		<folder>forms</folder>
+		<folder>services</folder>
+		<folder plugin="apl">src</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+		<server type="extension" priority="1" name="RadicalMart - APL">
+			https://sovmart.ru/update?element=plg_radicalmart_apl
+		</server>
+	</updateservers>
+</extension>
