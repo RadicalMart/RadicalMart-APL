@@ -50,10 +50,12 @@ class APL extends CMSPlugin implements SubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			'onRadicalMartPrepareConfigForm'  => 'loadConfigForm',
-			'onRadicalMartPrepareProductForm' => 'loadProductForm',
-			'onRadicalMartGetCartProduct'     => 'prepareCartProduct',
-			'onRadicalMartGetOrder'           => 'prepareOrderObject',
+			'onRadicalMartPrepareConfigForm'         => 'loadConfigForm',
+			'onRadicalMartPrepareProductForm'        => 'loadProductForm',
+			'onRadicalMartGetCartProduct'            => 'prepareCartProduct',
+			'onRadicalMartGetOrder'                  => 'prepareOrderObject',
+			'onRadicalMartExpressPrepareProductForm' => 'loadProductForm',
+			'onRadicalMartExpressGetOrder'           => 'prepareOrderObject',
 		];
 	}
 
@@ -122,7 +124,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 		$statuses = false;
 		if (strpos($context, 'com_radicalmart_express.') !== false)
 		{
-			$statuses = ComponentHelper::getParams('com_radicalmart_express')->get('apl_statuses', []);
+			$statuses = [2];
 		}
 		elseif (strpos($context, 'com_radicalmart.') !== false)
 		{
