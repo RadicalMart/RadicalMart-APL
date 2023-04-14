@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart 1C Integration
  * @subpackage  plg_radicalmart_1c
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.0
  * @author      Delo Design - delo-design.ru
  * @copyright   Copyright (c) 2023 Delo Design. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -27,7 +27,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var    bool
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	protected $autoloadLanguage = true;
 
@@ -36,7 +36,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var    string
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	protected string $formsPath = JPATH_PLUGINS . '/radicalmart/apl/forms';
 
@@ -45,7 +45,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return  array
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   1.0.0
 	 */
 	public static function getSubscribedEvents(): array
 	{
@@ -67,7 +67,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws \Exception
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	public function loadConfigForm(Form $form, $data = [])
 	{
@@ -82,7 +82,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws \Exception
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	public function loadProductForm(Form $form, $data = [])
 	{
@@ -96,7 +96,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 * @param   string|null  $key      Cart product key.
 	 * @param   object|null  $product  Cart product data.
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	public function prepareCartProduct(?string $context = null, ?string &$key = null, ?object &$product = null)
 	{
@@ -112,7 +112,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 * @param   string|null  $context  Context selector string.
 	 * @param   object|null  $order    Order object data.
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	public function prepareOrderObject(?string $context = null, ?object &$order = null)
 	{
