@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.9" type="plugin" group="radicalmart" method="upgrade">
+<extension version="4.2" type="plugin" group="radicalmart" method="upgrade">
 	<name>PLG_RADICALMART_APL</name>
 	<author>Delo Design</author>
 	<creationDate>April 2023</creationDate>
@@ -22,12 +22,6 @@
 		<folder>services</folder>
 		<folder plugin="apl">src</folder>
 	</files>
-	<config>
-		<fields name="params">
-			<fieldset name="basic">
-			</fieldset>
-		</fields>
-	</config>
 	<updateservers>
 		<server type="extension" priority="1" name="RadicalMart - APL">
 			https://sovmart.ru/update?element=plg_radicalmart_apl
