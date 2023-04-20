@@ -32,6 +32,15 @@ class APL extends CMSPlugin implements SubscriberInterface
 	protected $autoloadLanguage = true;
 
 	/**
+	 * Loads the application object.
+	 *
+	 * @var  \Joomla\CMS\Application\CMSApplication
+	 *
+	 * @since  __DEPLOY_VERSION__
+	 */
+	protected $app = null;
+
+	/**
 	 * Plugins forms path.
 	 *
 	 * @var    string
@@ -50,12 +59,12 @@ class APL extends CMSPlugin implements SubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			'onRadicalMartPrepareConfigForm'         => 'loadConfigForm',
-			'onRadicalMartPrepareProductForm'        => 'loadProductForm',
-			'onRadicalMartGetCartProduct'            => 'prepareCartProduct',
-			'onRadicalMartGetOrder'                  => 'prepareOrderObject',
-			'onRadicalMartExpressPrepareProductForm' => 'loadProductForm',
-			'onRadicalMartExpressGetOrder'           => 'prepareOrderObject',
+			'onRadicalMartPrepareConfigForm'         => 'onPrepareConfigForm',
+			'onRadicalMartPrepareProductForm'        => 'onPrepareProductForm',
+			'onRadicalMartGetCartProduct'            => 'onCartProduct',
+			'onRadicalMartGetOrder'                  => 'onGetOrder',
+			'onRadicalMartExpressPrepareProductForm' => 'onPrepareProductForm',
+			'onRadicalMartExpressGetOrder'           => 'onGetOrder',
 		];
 	}
 
@@ -67,11 +76,15 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws \Exception
 	 *
-	 * @since 1.0.0
+	 * @since __DEPLOY_VERSION__
 	 */
-	public function loadConfigForm(Form $form, $data = [])
+	public function onPrepareConfigForm(Form $form, $data = [])
 	{
-		$form->loadFile($this->formsPath . '/config.xml');
+		$component = $this->app->input->getCmd('component');
+		if ($component === 'com_radicalmart')
+		{
+			$form->loadFile($this->formsPath . '/radicalmart/config.xml');
+		}
 	}
 
 	/**
@@ -84,9 +97,17 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @since 1.0.0
 	 */
-	public function loadProductForm(Form $form, $data = [])
+	public function onPrepareProductForm(Form $form, $data = [])
 	{
-		$form->loadFile($this->formsPath . '/product.xml');
+		$formName = $form->getName();
+		if ($formName === 'com_radicalmart.product')
+		{
+			$form->loadFile($this->formsPath . '/radicalmart/product.xml');
+		}
+		elseif ($formName === 'com_radicalmart_express.product')
+		{
+			$form->loadFile($this->formsPath . '/radicalmart_express/product.xml');
+		}
 	}
 
 	/**
@@ -98,7 +119,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @since 1.0.0
 	 */
-	public function prepareCartProduct(?string $context = null, ?string &$key = null, ?object &$product = null)
+	public function onCartProduct(?string $context = null, ?string &$key = null, ?object &$product = null)
 	{
 		if (!empty($product) && !empty($product->plugins) && !empty($product->plugins->get('apl')))
 		{
@@ -107,14 +128,14 @@ class APL extends CMSPlugin implements SubscriberInterface
 	}
 
 	/**
-	 * Method to remove links from cart RadicalMart cart.
+	 * Method to add or remove links in RadicalMart & RadicalMart Express order.
 	 *
 	 * @param   string|null  $context  Context selector string.
 	 * @param   object|null  $order    Order object data.
 	 *
 	 * @since 1.0.0
 	 */
-	public function prepareOrderObject(?string $context = null, ?object &$order = null)
+	public function onGetOrder(?string $context = null, ?object &$order = null)
 	{
 		if (empty($order) || empty($order->products))
 		{

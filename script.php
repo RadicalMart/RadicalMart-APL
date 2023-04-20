@@ -13,6 +13,8 @@
 
 use Joomla\CMS\Application\AdministratorApplication;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Installer\InstallerAdapter;
 use Joomla\CMS\Installer\InstallerScriptInterface;
 use Joomla\CMS\Language\Text;
@@ -60,6 +62,17 @@ return new class () implements ServiceProviderInterface {
 			 * @since  1.0.0
 			 */
 			protected string $minimumPhp = '7.4';
+
+			/**
+			 * Update methods.
+			 *
+			 * @var  array
+			 *
+			 * @since  __DEPLOY_VERSION__
+			 */
+			protected array $updateMethods = [
+				'update1_0_1'
+			];
 
 			/**
 			 * Constructor.
@@ -151,10 +164,21 @@ return new class () implements ServiceProviderInterface {
 			 */
 			public function postflight(string $type, InstallerAdapter $adapter): bool
 			{
-				if ($type !== 'uninstall')
+				if ($type === 'install')
 				{
 					// Enable plugin
 					$this->enablePlugin($adapter);
+				}
+				elseif ($type === 'update')
+				{
+					// Run updates script
+					foreach ($this->updateMethods as $method)
+					{
+						if (method_exists($this, $method))
+						{
+							$this->$method($adapter);
+						}
+					}
 				}
 
 				return true;
@@ -212,6 +236,28 @@ return new class () implements ServiceProviderInterface {
 
 				// Update record
 				$this->db->updateObject('#__extensions', $plugin, ['type', 'element', 'folder']);
+			}
+
+			/**
+			 * Method to update to 1.0.1 version.
+			 *
+			 * @since  __DEPLOY_VERSION__
+			 */
+			protected function update1_0_1()
+			{
+				// Delete files
+				$files = [
+					'/plugins/radicalmart/apl/forms/config.xml',
+					'/plugins/radicalmart/apl/forms/product.xml',
+				];
+				foreach ($files as $file)
+				{
+					$path = Path::clean(JPATH_ROOT . '/' . $file);
+					if (File::exists($path))
+					{
+						File::delete($path);
+					}
+				}
 			}
 		});
 	}

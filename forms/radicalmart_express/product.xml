@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="Joomla\Component\RadicalMartExpress\Administrator\Field">
+	<fieldset name="after_payment_links" label="PLG_RADICALMART_APL_FIELDSET">
+		<fields name="plugins">
+			<field name="apl" type="subform"
+				   label="PLG_RADICALMART_APL_FIELD"
+				   multiple="true"
+				   parentclass="stack">
+				<form>
+					<field name="text" type="text"
+						   label="PLG_RADICALMART_APL_FIELD_TEXT"/>
+					<field name="href" type="text"
+						   label="PLG_RADICALMART_APL_FIELD_HREF"
+						   required="true"/>
+					<field name="target" type="list"
+						   label="PLG_RADICALMART_APL_FIELD_TARGET"
+						   default="_blank">
+						<option value="">PLG_RADICALMART_APL_FIELD_TARGET_SAME</option>
+						<option value="_blank">PLG_RADICALMART_APL_FIELD_TARGET_BLANK</option>
+					</field>
+					<field name="class" type="text"
+						   label="PLG_RADICALMART_APL_FIELD_CLASS"/>
+				</form>
+			</field>
+		</fields>
+	</fieldset>
+</form>
