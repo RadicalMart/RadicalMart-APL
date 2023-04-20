@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart 1C Integration
  * @subpackage  plg_radicalmart_1c
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.1
  * @author      Delo Design - delo-design.ru
  * @copyright   Copyright (c) 2023 Delo Design. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -36,7 +36,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var  \Joomla\CMS\Application\CMSApplication
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.1
 	 */
 	protected $app = null;
 
@@ -76,7 +76,7 @@ class APL extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws \Exception
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.1
 	 */
 	public function onPrepareConfigForm(Form $form, $data = [])
 	{

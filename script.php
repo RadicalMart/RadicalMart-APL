@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart - After Payment Link
  * @subpackage  plg_radicalmart_apl
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.1
  * @author      Delo Design - delo-design.ru
  * @copyright   Copyright (c) 2023 Delo Design. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -68,7 +68,7 @@ return new class () implements ServiceProviderInterface {
 			 *
 			 * @var  array
 			 *
-			 * @since  __DEPLOY_VERSION__
+			 * @since  1.0.1
 			 */
 			protected array $updateMethods = [
 				'update1_0_1'
@@ -241,7 +241,7 @@ return new class () implements ServiceProviderInterface {
 			/**
 			 * Method to update to 1.0.1 version.
 			 *
-			 * @since  __DEPLOY_VERSION__
+			 * @since  1.0.1
 			 */
 			protected function update1_0_1()
 			{
